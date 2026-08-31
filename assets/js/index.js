@@ -59,7 +59,6 @@ loadDateBtn.addEventListener("click", () => {
   selectedDate.nextElementSibling.textContent = selectedDate.value;
   getApod(selectedDate.value);
 });
-
 async function getApod(date) {
   try {
     // to stop the video from playing when the user loads a new date, reset the src to empty string
@@ -413,7 +412,7 @@ async function getPlanets() {
     console.log("doooneee");
   }
 }
-getPlanets()
+getPlanets();
 function displayPlanets() {
   planetsList.forEach((planet) => {
     planet.addEventListener("click", () => {
@@ -723,14 +722,42 @@ function PlanetsComparison() {
     earthPlanet.mass.massValue * Math.pow(10, earthPlanet.mass.massExponent);
 
   const planetsDisplayInfo = [
-    { id: "uranus", color: "#06b6d4", badgeClass: "bg-cyan-500/50 text-cyan-200" },
-    { id: "neptune", color: "#2563eb", badgeClass: "bg-blue-500/50 text-blue-200" },
-    { id: "jupiter", color: "#fb923c", badgeClass: "bg-purple-500/50 text-purple-200" },
+    {
+      id: "uranus",
+      color: "#06b6d4",
+      badgeClass: "bg-cyan-500/50 text-cyan-200",
+    },
+    {
+      id: "neptune",
+      color: "#2563eb",
+      badgeClass: "bg-blue-500/50 text-blue-200",
+    },
+    {
+      id: "jupiter",
+      color: "#fb923c",
+      badgeClass: "bg-purple-500/50 text-purple-200",
+    },
     { id: "mars", color: "#ef4444", badgeClass: "bg-red-500/50 text-red-200" },
-    { id: "mercure", color: "#94a3b8", badgeClass: "bg-orange-500/50 text-orange-200" },
-    { id: "saturne", color: "#facc15", badgeClass: "bg-yellow-500/50 text-yellow-200" },
-    { id: "terre", color: "#3b82f6", badgeClass: "bg-blue-500/50 text-blue-200" },
-    { id: "venus", color: "#f97316", badgeClass: "bg-orange-500/50 text-orange-200" },
+    {
+      id: "mercure",
+      color: "#94a3b8",
+      badgeClass: "bg-orange-500/50 text-orange-200",
+    },
+    {
+      id: "saturne",
+      color: "#facc15",
+      badgeClass: "bg-yellow-500/50 text-yellow-200",
+    },
+    {
+      id: "terre",
+      color: "#3b82f6",
+      badgeClass: "bg-blue-500/50 text-blue-200",
+    },
+    {
+      id: "venus",
+      color: "#f97316",
+      badgeClass: "bg-orange-500/50 text-orange-200",
+    },
   ];
 
   let planetComparisonHTML = "";
@@ -740,6 +767,7 @@ function PlanetsComparison() {
     // safety check: if the id doesn't match anything in the API, skip this row instead of crashing
     if (!planet) {
       console.log("planet not found for id:", info.id);
+      // to start over from the beginning and doesn't complete the loop
       return;
     }
 
@@ -751,7 +779,7 @@ function PlanetsComparison() {
       planet.mass.massValue * Math.pow(10, planet.mass.massExponent);
     const planetMassRatio = (planetMassValue / earthMassValue).toFixed(3);
     const planetMoonsCount = planet.moons?.length || 0;
-    const planetBodyType = planet.type || planet.bodyType || "N/A";
+    const planetType = planet.type || "N/A";
 
     // convert sideralOrbit (days) to a friendly display: days if under a year, years otherwise
     let planetOrbitalPeriod;
@@ -791,7 +819,7 @@ function PlanetsComparison() {
         </td>
         <td class="px-4 md:px-6 py-3 md:py-4 whitespace-nowrap">
           <span class="px-2 py-1 rounded text-xs ${info.badgeClass}"
-            >${planetBodyType}</span
+            >${planetType}</span
           >
         </td>
       </tr>

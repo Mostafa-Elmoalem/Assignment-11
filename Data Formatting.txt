@@ -1,0 +1,367 @@
+// ==============================
+// 1. Format Number
+// ==============================
+
+const number = 1299999;
+
+const formattedNumber = number.toLocaleString("en-US");
+
+console.log(formattedNumber);
+// 1,299,999
+
+
+// ==============================
+// 2. Format Currency - USD
+// ==============================
+
+const price = 1299;
+
+const formattedPrice = price.toLocaleString("en-US", {
+  style: "currency",
+  currency: "USD",
+});
+
+console.log(formattedPrice);
+// $1,299.00
+
+
+// ==============================
+// 3. Format Currency - EGP
+// ==============================
+
+const egpPrice = 1500;
+
+const formattedEGP = egpPrice.toLocaleString("en-EG", {
+  style: "currency",
+  currency: "EGP",
+});
+
+console.log(formattedEGP);
+// EGP 1,500.00
+
+
+// ==============================
+// 4. Format Date
+// ==============================
+
+const date = new Date("2026-08-31");
+
+const formattedDate = date.toLocaleDateString("en-US");
+
+console.log(formattedDate);
+// 8/31/2026
+
+
+// ==============================
+// 5. Format Date - Friendly
+// ==============================
+
+const friendlyDate = date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+});
+
+console.log(friendlyDate);
+// Aug 31, 2026
+
+
+// ==============================
+// 6. Format Date - Full
+// ==============================
+
+const fullDate = date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+console.log(fullDate);
+// August 31, 2026
+
+
+// ==============================
+// 7. Format Time
+// ==============================
+
+const time = new Date("2026-08-31T17:30:00");
+
+const formattedTime = time.toLocaleTimeString("en-US");
+
+console.log(formattedTime);
+// 5:30:00 PM
+
+
+// ==============================
+// 8. Format Time - Without Seconds
+// ==============================
+
+const simpleTime = time.toLocaleTimeString("en-US", {
+  hour: "2-digit",
+  minute: "2-digit",
+});
+
+console.log(simpleTime);
+// 05:30 PM
+
+
+// ==============================
+// 9. Format Date + Time
+// ==============================
+
+const dateTime = time.toLocaleString("en-US", {
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+  hour: "2-digit",
+  minute: "2-digit",
+});
+
+console.log(dateTime);
+// Aug 31, 2026, 05:30 PM
+
+
+// ==============================
+// 10. Convert KM → Miles
+// ==============================
+
+const kilometers = 100;
+
+const miles = kilometers * 0.621371;
+
+console.log(miles);
+// 62.1371
+
+
+// ==============================
+// 11. Convert Miles → KM
+// ==============================
+
+const milesValue = 100;
+
+const km = milesValue * 1.60934;
+
+console.log(km);
+// 160.934
+
+
+// ==============================
+// 12. Convert Meters → KM
+// ==============================
+
+const meters = 5000;
+
+const kilometersValue = meters / 1000;
+
+console.log(kilometersValue);
+// 5
+
+
+// ==============================
+// 13. Convert KM → Meters
+// ==============================
+
+const kmValue = 5;
+
+const metersValue = kmValue * 1000;
+
+console.log(metersValue);
+// 5000
+
+
+// ==============================
+// 14. Convert Celsius → Fahrenheit
+// ==============================
+
+const celsius = 25;
+
+const fahrenheit = (celsius * 9) / 5 + 32;
+
+console.log(fahrenheit);
+// 77
+
+
+// ==============================
+// 15. Convert Fahrenheit → Celsius
+// ==============================
+
+const fahrenheitValue = 77;
+
+const celsiusValue = ((fahrenheitValue - 32) * 5) / 9;
+
+console.log(celsiusValue);
+// 25
+
+
+// ==============================
+// 16. Convert Bytes → KB
+// ==============================
+
+const bytes = 5000;
+
+const kb = bytes / 1024;
+
+console.log(kb);
+// 4.8828125
+
+
+// ==============================
+// 17. Convert Bytes → MB
+// ==============================
+
+const fileSize = 5000000;
+
+const mb = fileSize / (1024 * 1024);
+
+console.log(mb);
+// 4.768...
+
+
+/* 
+========================================
+18. Round Number
+========================================
+*/
+
+const decimal = 12.6789;
+
+console.log(Math.round(decimal));
+// 13
+
+console.log(Math.floor(decimal));
+// 12
+
+console.log(Math.ceil(decimal));
+// 13
+
+
+// ==============================
+// 19. Keep Specific Decimal Places
+// ==============================
+
+const value = 12.6789;
+
+const result = value.toFixed(2);
+
+console.log(result);
+// "12.68"
+
+
+// ==============================
+// 20. Percentage
+// ==============================
+
+const total = 500;
+const current = 250;
+
+const percentage = (current / total) * 100;
+
+console.log(percentage);
+// 50
+
+
+// ==============================
+// 21. Format Percentage
+// ==============================
+
+const percent = 50;
+
+const formattedPercent = percent.toLocaleString("en-US", {
+  style: "percent",
+});
+
+console.log(formattedPercent);
+// 5,000%
+
+
+// لو القيمة عندك 0.5:
+
+const percentValue = 0.5;
+
+console.log(
+  percentValue.toLocaleString("en-US", {
+    style: "percent",
+  }),
+);
+// 50%
+
+
+// ==============================
+// 22. Convert Minutes → Hours
+// ==============================
+
+const minutes = 150;
+
+const hours = Math.floor(minutes / 60);
+const remainingMinutes = minutes % 60;
+
+console.log(`${hours}h ${remainingMinutes}m`);
+// 2h 30m
+
+
+// ==============================
+// 23. Convert Seconds → Minutes
+// ==============================
+
+const seconds = 150;
+
+const mins = Math.floor(seconds / 60);
+const remainingSeconds = seconds % 60;
+
+console.log(`${mins}m ${remainingSeconds}s`);
+// 2m 30s
+
+
+// ==============================
+// 24. Convert Days → Years
+// ==============================
+
+const days = 730;
+
+const years = days / 365.25;
+
+console.log(years.toFixed(1));
+// 2.0
+
+
+// ==============================
+// 25. Convert KM → AU
+// ==============================
+
+const distanceKm = 149597870;
+
+const AU_IN_KM = 149597870;
+
+const distanceAU = distanceKm / AU_IN_KM;
+
+console.log(distanceAU);
+// 1
+
+
+// ==============================
+// 26. Format Large Numbers
+// ==============================
+
+const followers = 1500000;
+
+const formattedFollowers = new Intl.NumberFormat("en", {
+  notation: "compact",
+}).format(followers);
+
+console.log(formattedFollowers);
+// 1.5M
+
+
+// ==============================
+// 27. Format Large Numbers
+// ==============================
+
+const views = 2500000;
+
+const formattedViews = new Intl.NumberFormat("en", {
+  notation: "compact",
+  maximumFractionDigits: 1,
+}).format(views);
+
+console.log(formattedViews);
+// 2.5M

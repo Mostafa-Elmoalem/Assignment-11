@@ -1,4 +1,10 @@
-/*! tailwindcss v4.1.17 | MIT License | https://tailwindcss.com */
+@import "tailwindcss";
+
+@source inline(
+  "bg-cyan-500/50 text-cyan-200",
+  "bg-blue-500/50 text-blue-200"
+);
+
 @layer properties {
   @supports (((-webkit-hyphens: none)) and (not (margin-trim: inline))) or
     ((-moz-orient: inline) and (not (color: rgb(from red r g b)))) {

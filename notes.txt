@@ -11,3 +11,5 @@
 6- find method and its usage with api when i want specific element from the data
 
 7-  note that the id of elements can be different  
+
+8 - problem in style of type in planets section ...tailwind issue
