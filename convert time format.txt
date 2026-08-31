@@ -1,0 +1,89 @@
+// Get the date and time value coming from the API
+// Example: "2026-08-30T11:26:00Z"
+const rawDate = launch.net;
+
+
+// Convert the API string into a JavaScript Date object
+// This allows us to use JavaScript's Date methods for formatting
+const dateObj = new Date(rawDate);
+
+
+// =========================
+// FORMAT THE DATE
+// =========================
+
+// Convert the Date object into a readable date
+// "en-US" → use the American English date format
+const formattedDate = dateObj.toLocaleDateString("en-US", {
+
+  // Show the full day name
+  // Example: Sunday
+  weekday: "long",
+
+  // Show the year as a number
+  // Example: 2026
+  year: "numeric",
+
+  // Show the full month name
+  // Example: August
+  month: "long",
+
+  // Show the day as a number
+  // Example: 30
+  day: "numeric"
+});
+
+
+// =========================
+// FORMAT THE TIME
+// =========================
+
+// Convert the Date object into a readable time
+const formattedTime = dateObj.toLocaleTimeString("en-US", {
+
+  // Show the hour using 2 digits
+  // Example: 11
+  hour: "2-digit",
+
+  // Show the minutes using 2 digits
+  // Example: 26
+  minute: "2-digit",
+
+  // The API date ends with "Z", which means UTC
+  // We explicitly tell JavaScript to display the time in UTC
+  timeZone: "UTC",
+
+  // Use the 12-hour format
+  // Example: 11:26 AM instead of 11:26
+  hour12: true
+}) + " UTC"; // Add "UTC" to make the timezone clear
+
+
+// =========================
+// RESULT
+// =========================
+
+console.log(formattedDate);
+// Sunday, August 30, 2026
+
+console.log(formattedTime);
+// 11:26 AM UTC
+
+
+
+
+
+
+
+
+API
+ ↓
+"2026-08-30T11:26:00Z"
+ ↓
+new Date()
+ ↓
+Date Object
+ ↓
+toLocaleDateString() → Sunday, August 30, 2026
+ ↓
+toLocaleTimeString() → 11:26 AM UTC
