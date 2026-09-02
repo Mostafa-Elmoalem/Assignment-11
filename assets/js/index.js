@@ -276,7 +276,7 @@ function displayFeaturedLaunch(firstLaunch) {
                     </div>
                     <div
                       class="absolute inset-0 bg-linear-to-t from-slate-900 via-transparent to-transparent">
-                      <img src="${imageUrl}" alt="Falcon Heavy | Nancy Grace Roman Space Telescope" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/assets/images/launch-placeholder.png';">
+                      <img src="${imageUrl}" alt="${firstLaunch.name}" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/assets/images/launch-placeholder.png';">
                       </div>
                   </div>
                 </div>
@@ -323,7 +323,7 @@ function displayOtherLaunches(otherLaunches) {
                       </div>
                     </div>
 `;
-    } else {
+    } else{
       imageHTML = `
       <div
          class="relative h-48 bg-slate-900/50 flex items-center justify-center">
