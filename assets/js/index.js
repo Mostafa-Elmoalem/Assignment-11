@@ -26,7 +26,7 @@ const planetDetails = document.querySelector("#planet-details");
 const planetCoparison = document.querySelector("#planet-comparison-tbody");
 // sidebar toggle button
 sidebarToggleBtn.addEventListener("click", (e) => {
-  e.stopPropagation()
+  e.stopPropagation(); // to prevent the click event from bubbling up to the document and closing the sidebar immediately
   document.querySelector("#sidebar").classList.toggle("sidebar-open");
   document.querySelector("#overlay").classList.toggle("sidebar-overlay");
 });
