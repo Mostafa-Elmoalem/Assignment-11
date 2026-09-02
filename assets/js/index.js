@@ -1,3 +1,4 @@
+const sidebarToggleBtn = document.querySelector("#sidebar-toggle");
 const apodImage = document.querySelector("#apod-image");
 const apodVideo = document.querySelector("#apod-video");
 const apodTitle = document.querySelector("#apod-title");
@@ -23,7 +24,19 @@ const launchesGrid = document.querySelector("#launches-grid");
 const planetsList = Array.from(document.querySelectorAll("[data-planet-id]"));
 const planetDetails = document.querySelector("#planet-details");
 const planetCoparison = document.querySelector("#planet-comparison-tbody");
-
+// sidebar toggle button
+sidebarToggleBtn.addEventListener("click", (e) => {
+  e.stopPropagation()
+  document.querySelector("#sidebar").classList.toggle("sidebar-open");
+  document.querySelector("#overlay").classList.toggle("sidebar-overlay");
+});
+// to close the sidebar when the user clicks outside of it
+document.addEventListener("click", (e) => {
+  if (!e.target.closest("#sidebar")) {
+    document.querySelector("#sidebar").classList.remove("sidebar-open");
+    document.querySelector("#overlay").classList.remove("sidebar-overlay");
+  }
+});
 // =======================to highlight the active link in the nav bar and show the corresponding section=====================================
 const navLinks = Array.from(document.querySelectorAll("nav > a"));
 const sections = Array.from(document.querySelectorAll("section"));
@@ -33,6 +46,8 @@ for (let i = 0; i < navLinks.length; i++) {
       link.classList.add("text-slate-300", "hover:bg-slate-800");
       link.classList.remove("bg-blue-500/10", "text-blue-400");
     });
+    document.querySelector("#sidebar").classList.remove("sidebar-open");
+    document.querySelector("#overlay").classList.remove("sidebar-overlay");
     // using e.currentTarget to refer to the clicked link instead of e.target (which could be a child element)
     e.currentTarget.classList.remove("text-slate-300", "hover:bg-slate-800");
     e.currentTarget.classList.add("bg-blue-500/10", "text-blue-400");
@@ -42,21 +57,42 @@ for (let i = 0; i < navLinks.length; i++) {
     document.getElementById(targetSecID)?.classList.remove("hidden");
   });
 }
+
 // =================================== Today in Space Section =========================================
 // date of today in YYYY-MM-DD format
 const today = new Date().toISOString().split("T")[0];
 selectedDate.value = today;
 getApod(today);
-
 console.log(today); // initialize the visible date label next to the input
+
+// dynamic Formated Function
+function formatDate(dateString, monthFormat) {
+  const dateObj = new Date(dateString);
+
+  return dateObj.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: monthFormat,
+    day: "numeric",
+  });
+}
+// when the user refreshes the page, the label next to the input should show the today date in a short format
 if (selectedDate && selectedDate.nextElementSibling) {
-  selectedDate.nextElementSibling.textContent = selectedDate.value;
+  selectedDate.nextElementSibling.textContent = formatDate(
+    selectedDate.value,
+    "short",
+  );
 } // when the user picks a new date
 selectedDate.addEventListener("change", () => {
-  selectedDate.nextElementSibling.textContent = selectedDate.value;
+  selectedDate.nextElementSibling.textContent = formatDate(
+    selectedDate.value,
+    "short",
+  );
 }); // when the user picks a new date, update the label and reload APOD
 loadDateBtn.addEventListener("click", () => {
-  selectedDate.nextElementSibling.textContent = selectedDate.value;
+  selectedDate.nextElementSibling.textContent = formatDate(
+    selectedDate.value,
+    "short",
+  );
   getApod(selectedDate.value);
 });
 async function getApod(date) {
@@ -96,9 +132,9 @@ async function getApod(date) {
       apodVideo.nextElementSibling.classList.add("hidden");
     }
     apodTitle.textContent = data.title || "";
-    apodDate.textContent = `Astronomy Picture of the Day - ${data.date || ""}`;
-    apodDateDetail.lastChild.textContent = data.date || "";
-    apodDateInfo.textContent = data.date || "";
+    apodDate.textContent = `Astronomy Picture of the Day - ${formatDate(data.date, "long") || ""}`;
+    apodDateDetail.lastChild.textContent = formatDate(data.date, "long") || "";
+    apodDateInfo.textContent = `${formatDate(data.date, "long") || ""}`;
     // display the media type (image or video) in the UI
     apodMediaType.textContent = data.media_type || "";
     apodExplanation.textContent = data.explanation || "";
@@ -120,7 +156,7 @@ viewFullResolutionBtn.addEventListener("click", () => {
 
 todayApodBtn.addEventListener("click", () => {
   selectedDate.value = today;
-  selectedDate.nextElementSibling.textContent = today; // edit the data
+  selectedDate.nextElementSibling.textContent = formatDate(today, "short"); // edit the data
   getApod(today);
 });
 
@@ -323,7 +359,7 @@ function displayOtherLaunches(otherLaunches) {
                       </div>
                     </div>
 `;
-    } else{
+    } else {
       imageHTML = `
       <div
          class="relative h-48 bg-slate-900/50 flex items-center justify-center">

@@ -1,15 +1,25 @@
-1- the shape of the date Aug 30, 2026
+1- the shape of the date Aug 30, 2026 ✅
 
 2- there are youtube videos in the images...how can i handel it  ✅
 
-3- error in the logic of the images and today button
+3- error in the logic of the images and today button ✅
 
-4- handle the error text
+4- handle the error text  ✅
 
 5- what is the onerror and its usage
 
-6- find method and its usage with api when i want specific element from the data
+6- find method and its usage with api when i want specific element from the data  ✅
 
-7-  note that the id of elements can be different  
+7-  note that the id of elements can be different   ✅
 
-8 - problem in style of type in planets section ...tailwind issue
+8 - problem in style of type in planets section ...tailwind issue           
+
+9- i want when i click on out of sidebar ==> close sidebar
+   if the click is out ==> e.target.closest("#sidebar") == null
+
+   ==> document.addEventListener("click", (e) => {
+  if (!e.target.closest("#sidebar")) {
+    document.querySelector("#sidebar").classList.remove("sidebar-open");
+    document.querySelector("#overlay").classList.remove("sidebar-            	overlay");
+ 	 }
+	});
